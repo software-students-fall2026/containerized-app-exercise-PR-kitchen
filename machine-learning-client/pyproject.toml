@@ -1,0 +1,12 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=ml_client --cov-report=term-missing"
+
+[tool.coverage.report]
+fail_under = 80
+
+[tool.pylint.main]
+ignored-modules = ["torch", "cv2", "ultralytics"]
+
+[tool.pylint."messages control"]
+disable = ["fixme"]
