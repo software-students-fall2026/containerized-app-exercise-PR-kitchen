@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Room busyness | PR Kitchen{% endblock %}
+{% block content %}
+<h1>How busy is it?</h1>
+<form method="post" enctype="multipart/form-data">
+  <label>Photo of the room
+    <input type="file" name="image" accept="image/*" capture="environment" required />
+  </label>
+  <label>Approximate capacity / seats (optional)
+    <input type="number" name="capacity" min="1" step="1" />
+  </label>
+  <button type="submit">Check busyness</button>
+</form>
+<!-- TODO: show people count and busyness level -->
+{% endblock %}

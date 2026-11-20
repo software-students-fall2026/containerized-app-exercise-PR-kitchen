@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=app --cov-report=term-missing"
+
+[tool.coverage.report]
+fail_under = 80
+
+[tool.pylint."messages control"]
+disable = ["fixme"]
