@@ -1,0 +1,38 @@
+services:
+  mongodb:
+    image: mongo:8
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  ml-client:
+    image: ${DOCKERHUB_USERNAME:-prkitchen}/prkitchen-ml-client:latest
+    build: ./machine-learning-client
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      MONGO_URI: mongodb://mongodb:27017
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+
+  web-app:
+    image: ${DOCKERHUB_USERNAME:-prkitchen}/prkitchen-web-app:latest
+    build: ./web-app
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      MONGO_URI: mongodb://mongodb:27017
+      ML_CLIENT_URL: http://ml-client:5001
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - ml-client
+
+volumes:
+  mongo-data:

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}History | PR Kitchen{% endblock %}
+{% block content %}
+<h1>Recent analyses</h1>
+<!-- TODO: render the analyses list / dashboard -->
+{% for analysis in analyses %}
+<p>{{ analysis }}</p>
+{% else %}
+<p>No analyses yet.</p>
+{% endfor %}
+{% endblock %}
